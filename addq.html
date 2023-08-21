@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form with Dynamic Questions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .add-question-button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Create a Form with Questions</h1>
+        <form id="question-form">
+            <!-- Question 1 -->
+            <div class="question">
+                <label for="question1">Question 1:</label>
+                <input type="text" id="question1" name="question1" required>
+            </div>
+            <!-- Add more questions dynamically here -->
+
+            <button type="button" class="add-question-button" onclick="addQuestion()">Add Question</button>
+            <button type="submit">Submit Form</button>
+        </form>
+    </div>
+
+    <script>
+        let questionCounter = 1;
+
+        function addQuestion() {
+            questionCounter++;
+            const form = document.getElementById("question-form");
+            const newQuestionDiv = document.createElement("div");
+            newQuestionDiv.classList.add("question");
+            newQuestionDiv.innerHTML = `
+                <label for="question${questionCounter}">Question ${questionCounter}:</label>
+                <input type="text" id="question${questionCounter}" name="question${questionCounter}" required>
+            `;
+            form.insertBefore(newQuestionDiv, form.lastElementChild);
+        }
+    </script>
+</body>
+</html>
